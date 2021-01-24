@@ -9,5 +9,8 @@ public class Main {
 //        int input = GameLogic.readInt("Enter 1, 2, or 3: ", 3);
 //        System.out.println("Your chose number " + input);
 
+        // start the game
+        GameLogic.startGame();
+
     }
 }

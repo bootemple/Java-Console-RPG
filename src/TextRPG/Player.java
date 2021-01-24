@@ -49,8 +49,4 @@ public class Player extends Character{
         }
         GameLogic.anythingToContinue();
     }
-    // Method to start game
-    public static void startGame() {
-
-    }
 }
