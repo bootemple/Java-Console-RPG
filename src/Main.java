@@ -127,6 +127,7 @@ public class Main {
                 break;
             }
         }
+        // Leaving Game
         System.out.println("#########################");
         System.out.println(" # THANKS FOR PLAYING! # ");
         System.out.println("#########################");
