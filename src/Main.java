@@ -60,25 +60,76 @@ public class Main {
                     health -= damageTaken;
 
                     // Attack print
-                    System.out.println("\t> You attack " + enemy + " for" + damageDealt + " damage.");
+                    System.out.println("\t> You attack " + enemy + " for " + damageDealt + " damage.");
                     System.out.println("\t> You receive " + damageTaken);
 
                     // Health Low Print
-                    if(health < 1) {
+                    if (health < 1) {
                         System.out.println("\t> You have taken too much damage to continue!");
-
-
+                        break;
                     }
-
+                    // Drink Health Potion //
                 } else if (input.equals("2")) {
-
+                    // check for health potion
+                    if (numHealthPotions > 0) {
+                        // Add to your health
+                        health += healthPotionHealAmount;
+                        // Take one health potion away
+                        numHealthPotions--;
+                        System.out.println("\t> YOu drink a health potion, +" + healthPotionHealAmount + "." + "\n\t> You now have " + health + " HP" + "\n\t> You have " + numHealthPotions + " Health potions left.\n");
+                    } else {
+                        // no health potions
+                        System.out.println("\t> You have no health potions left, defeat enemies to try and recover one!");
+                    }
+                    // For running away //
                 } else if (input.equals("3")) {
-
+                    System.out.println("\t> You ran away from the " + enemy + "!");
+                    continue GAME; // goes back to start of loop (GAME) if running away is true
                 } else {
-
+                    // If user enters something else
+                    System.out.println("\tInvalid command.");
                 }
             }
+            // Health gets too low //
+            if (health < 1) {
+                System.out.println("You have been slain....");
+                break;
+            }
+
+            System.out.println("----------------------");
+            // if enemy was defeated (health was not too low
+            System.out.println(" # " + enemy + " was defeated! #");
+            System.out.println(" # You have " + health + " HP left. #");
+            // If enemy drops a health potion after being defeated (50% chance)
+            if(rand.nextInt(100) < healthPotionDropChance) {
+                numHealthPotions++;
+                System.out.println(" # The " + enemy + " dropped a health potion. # ");
+                System.out.println(" # You have " + numHealthPotions + " health potion(s).");
+            }
+            System.out.println("----------------------");
+            // Next Adventure Options
+            System.out.println("What would you like to do?");
+            System.out.println("1. Continue fighting.");
+            System.out.println("2. Leave the Dark Forest.");
+
+            // Run loop based on user's input
+            String input = in.nextLine();
+            // If player input is not 1 or 2
+            while(!input.equals("1") && !input.equals("2")) {
+                System.out.println("Invalid command!");
+                input = in.nextLine();
+            }
+            // If player chooses 1 or 2
+            if(input.equals("1")) {
+                System.out.println("You continue further into the Forest.....");
+            } else if(input.equals("2")) {
+                System.out.println("You left the Dark Forest.");
+                break;
+            }
         }
+        System.out.println("#########################");
+        System.out.println(" # THANKS FOR PLAYING! # ");
+        System.out.println("#########################");
     }
 }
 
